@@ -1,0 +1,27 @@
+<h1>Update Your Info</h1>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for users_path do |f| %>
+  <div>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div><br>
+  <div>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div><br>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div><br>
+  <div>
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

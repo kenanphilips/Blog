@@ -1,0 +1,12 @@
+<%= @post.errors.full_messages.join(", ") %>
+<%= form_for @post do |f| %>
+    <%= f.label :title %>
+  <div>
+    <%= f.text_field :title %>
+  </div><br>
+  <%= f.label :body %>
+  <div>
+    <%= f.text_area :body %>
+  </div><br>
+  <%= f.submit %>
+<% end %>
