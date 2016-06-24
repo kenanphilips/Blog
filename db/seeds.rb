@@ -7,3 +7,5 @@ end
 ["Music", "Fashion", "Cars", "Beauty", "Travel", "Design", "Food", "Movies", "Sports", "Technology"]. each do |cat|
   Category.create name: cat
 end
+
+30.times { Tag.create(title: Faker::Hacker.adjective) }

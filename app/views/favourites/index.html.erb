@@ -1,0 +1,6 @@
+<h1>Your Favourited Posts</h1>
+
+<% @posts.each do |post| %>
+  <%= link_to post.title.titleize, post %>
+  <hr>
+<% end %>

@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-
     get :search, on: :collection
-
     post :flag, on: :member
     post :mark_done
-
     resources :comments, only: [:create, :destroy]
+    resources :favourites, only: [:create, :destroy]
   end
+
+  resources :favourites, only: [:index]
 
   get '/about' => 'home#about'
   root 'home#index'

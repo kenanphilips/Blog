@@ -1,4 +1,4 @@
-
+<center>
 <%= @post.errors.full_messages.join(", ") %>
 <%= form_for @post do |f| %>
   <div>
@@ -9,10 +9,10 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div><br>
-  <!-- <div>
-    <%#= f.label :tag_ids %>
-    <%#= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) %>
-  </div><br> -->
+  <div>
+    <%= f.label "Tags" %><br>
+    <%= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) %>
+  </div><br>
   <div>
     <%= f.collection_select :category_id, Category.all, :id, :name %>
   </div><br>
@@ -20,3 +20,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</center>

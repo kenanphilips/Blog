@@ -2,6 +2,16 @@
 <h4><%= @post.body %></h4>
 <p><%= time_ago_in_words(@post.created_at) %> ago</p>
 
+<% if @post.favourited_by?(current_user) %>
+  <%= link_to "Unfavourite",
+      post_favourite_path(@post, @post.favourite_for(current_user)),
+      method: :delete %><br><br>
+<% else %>
+  <%= link_to "Favourite",
+      post_favourites_path(@post),
+      method: :post %><br><br>
+<% end %>
+
 
 <% if can? :edit, @post %>
   <%= link_to "Edit", edit_post_path(@post)%>
@@ -11,6 +21,8 @@
                         method: :delete,
                         data: {confirm: "Are you sure?"}  %>
 <% end %>
+
+<h6>Tags: <%= @post.tags.map {|t| t.title.capitalize}.join(", ") %></h6>
 
 <h3>Comment</h3>
 <%= @comment.errors.full_messages.join(", ") %>

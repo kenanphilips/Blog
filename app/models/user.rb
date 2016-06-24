@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_posts, through: :favourites, source: :post
+
   has_many :posts, dependent: :nullify
 
   validates :first_name, presence: true
