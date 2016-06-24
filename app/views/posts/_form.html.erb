@@ -1,12 +1,22 @@
+
 <%= @post.errors.full_messages.join(", ") %>
 <%= form_for @post do |f| %>
-    <%= f.label :title %>
   <div>
+    <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div><br>
-  <%= f.label :body %>
   <div>
+    <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div><br>
-  <%= f.submit %>
+  <!-- <div>
+    <%#= f.label :tag_ids %>
+    <%#= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) %>
+  </div><br> -->
+  <div>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </div><br>
+  <div>
+    <%= f.submit %>
+  </div>
 <% end %>

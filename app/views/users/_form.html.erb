@@ -1,4 +1,4 @@
-<h1>Edit Profile</h1>
+<h1>Sign Up</h1>
 
 <% if @user.errors %>
   <ul>
@@ -22,18 +22,12 @@
     <%= f.email_field :email %>
   </div><br>
   <div>
-    <%= f.label "Current Password" %><br>
-    <%= f.password_field :current_password %>
-  </div><br>
-  <div>
-    <%= f.label "New Password" %><br>
+    <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div><br>
   <div>
-    <%= f.label "Confirm New Password" %><br>
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div><br>
-  <div>
-  <%= f.submit "Update" %>
-  </div>
+  <%= f.submit "Sign Up" %>
 <% end %>

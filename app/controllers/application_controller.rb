@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_post
+    @current_post ||= Post.find params[:post_id]
+  end
+
   def user_signed_in?
     session[:user_id].present?
   end
@@ -19,6 +23,14 @@ class ApplicationController < ActionController::Base
 
   def sign_in(user)
     session[:user_id] = user.id
+  end
+
+  def authenticate_user!
+    redirect_to new_session_path, alert: "Please sign in" unless user_signed_in?
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
 end
