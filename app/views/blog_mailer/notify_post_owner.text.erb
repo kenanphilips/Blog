@@ -1,0 +1,14 @@
+Hey <%= @owner.full_name %>!
+
+  You've received a comment on your post!
+
+  Post Title: <%= @post.title %>
+
+  Comment: <%= @comment.body %>
+
+  Visit your post by <%= link_to "clicking here", post_url(@post) %>!
+
+
+  Regards,
+
+  The Blog Team

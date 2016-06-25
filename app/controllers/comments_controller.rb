@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @post         = Post.find params[:post_id]
     @comment.post = @post
     if @comment.save
+      BlogMailer.notify_post_owner(@comment).deliver_now
       redirect_to post_path(@post), notice: "Comment created successfully!"
     else
       render "/posts/show"

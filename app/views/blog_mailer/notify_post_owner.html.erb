@@ -1,0 +1,17 @@
+<p>Hey <%= @owner.full_name %>!</p>
+<br>
+<p>
+  You've received a comment on your post!
+    <br><br>
+  <b>Post Title:</b> <%= @post.title %>
+    <br><br>
+  <b>Comment:</b> <%= @comment.body %>
+    <br><br>
+  Visit your post by <%= link_to "clicking here", post_url(@post) %>!
+</p>
+<br>
+<p style='padding-top: 10px'>
+  Regards,
+  <br>
+  The Blog Team
+</p>
