@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :password_resets, only: [:new, :create, :edit, :destroy]
+
   resources :users, only: [:new, :create, :edit, :update, :show]
   resources :sessions, only: [:new, :create, :edit, :destroy] do
     delete :destroy, on: :collection
