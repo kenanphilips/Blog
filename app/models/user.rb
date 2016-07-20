@@ -1,11 +1,14 @@
-class User < ActiveRecord::Base
+ class User < ActiveRecord::Base
   attr_accessor :remember_token, :reset_token
   before_save   :downcase_email
 
   has_secure_password
 
+  has_many :comments, dependent: :destroy
+
   has_many :favourites, dependent: :destroy
   has_many :favourite_posts, through: :favourites, source: :post
+
   has_many :posts, dependent: :nullify
 
   validates :first_name, presence: true
@@ -13,7 +16,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name} #{last_name}".titleize
   end
 
   # Returns the hash digest of the given string.

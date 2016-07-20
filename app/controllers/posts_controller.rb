@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new post_params
-    # @post.user = current_user
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: "Post created successfully!"
     else
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to root_path, alert: "Access denied." unless can? :edit, @post
+    redirect_to root_path, alert: "Access denied." unless can? :update, @post
     if @post.update post_params
       redirect_to post_path(@post), notice: "Post updated!"
     else

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :favourites, only: [:index]
 
+  # post '/users/new' => 'users#new'
   get '/about' => 'home#about'
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,26 +1,39 @@
-<h1>All Posts</h1>
+<div class="container">
+  <h1>All Posts</h1>
 
-<%= form_tag(posts_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-<%= submit_tag "Search" %>
-<% end %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div id="imaginary_container">
+        <div class="input-group stylish-input-group">
+          <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Posts", class: "form-control" %>
+            <span class="input-group-addon">
+              <%= submit_tag "Search" %>
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<% if @posts.present? %>
-  <%= render @posts %>
-<% else %>
-  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-<% end %><br>
-<br>
+  <% if @posts.present? %>
+    <%= render @posts %>
+  <% else %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% end %><br>
+  <br>
 
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% elsif flash[:alert] %>
-  <%= flash[:alert] %>
-<% end %><br>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% elsif flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %><br>
 
-<% @posts.each do |post| %>
-  <%= link_to post.title.titleize, post_path(post) %>
-  <hr>
-<% end %>
+  <% @posts.each do |post| %>
+    <%= link_to post.title.titleize, post_path(post) %>
+    <hr>
+  <% end %>
 
-<%= paginate @posts %>
+  <%= paginate @posts %>
+</div>

@@ -1,4 +1,4 @@
-class BlogMailer < ApplicationMailer
+class CommentsMailer < ApplicationMailer
 
   def notify_post_owner(comment)
     @comment   = comment

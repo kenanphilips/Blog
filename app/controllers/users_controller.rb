@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    user_params = params.require(:user).permit(:first_name, :last_name, :email, :current_password, :password, :password_confirmation)
     if current_user && @user.authenticate(user_params[:current_password]) && user_params[:current_password] != user_params[:password] # checking the current password and making sure it does noe equal the old one.
         user_params.delete(:current_password)
         @user.update user_params

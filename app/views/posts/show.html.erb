@@ -1,43 +1,54 @@
-<h2><%= @post.title.titleize %></h2>
-<h4><%= @post.body %></h4>
-<p><%= time_ago_in_words(@post.created_at) %> ago</p>
-<p>Created By: <%= @post.user.full_name if @post.user %></p>
+<div id="post-show" class="container">
+  <h2 id="post-title"><%= @post.title.titleize %></h2>
+  <h4 id="post-body"><%= @post.body %></h4>
+  <small id="post-created-at"><%= time_ago_in_words(@post.created_at) %> ago</small><br>
+  <small id="post-created-by">
+    Created By: <%= @post.user.full_name %></small>
+</div>
 
-<% if @post.favourited_by?(current_user) %>
-  <%= link_to "Unfavourite",
-      post_favourite_path(@post, @post.favourite_for(current_user)),
-      method: :delete %><br><br>
-<% else %>
-  <%= link_to "Favourite",
-      post_favourites_path(@post),
-      method: :post %><br><br>
-<% end %>
+<div id="favourite" class="container">
+  <% if @post.favourited_by?(current_user) %>
+    <%= link_to "Unfavourite",
+        post_favourite_path(@post, @post.favourite_for(current_user)),
+        method: :delete %><br><br>
+  <% else %>
+    <%= link_to "Favourite",
+        post_favourites_path(@post),
+        method: :post %><br><br>
+  <% end %>
+</div>
 
+<div id="edit-delete" class="container">
+  <% if can? :edit, @post %>
+    <%= link_to "Edit", edit_post_path(@post)%>
+  <% end %>
+  <% if can? :destroy, @post %>
+    <%= link_to "Delete", post_path(@post),
+                          method: :delete,
+                          data: {confirm: "Are you sure?"}  %>
+  <% end %>
+</div>
 
-<% if can? :edit, @post %>
-  <%= link_to "Edit", edit_post_path(@post)%>
-<% end %>
-<% if can? :destroy, @post %>
-  <%= link_to "Delete", post_path(@post),
-                        method: :delete,
-                        data: {confirm: "Are you sure?"}  %>
-<% end %>
+<div id="tags" class="container">
+  <h6>Tags: <%= @post.tags.map {|t| t.title.capitalize}.join(", ") %></h6>
+</div>
 
-<h6>Tags: <%= @post.tags.map {|t| t.title.capitalize}.join(", ") %></h6>
+<div id="comment-form" class="container">
+  <h3>Comment</h3>
+  <%= @comment.errors.full_messages.join(", ") %>
+  <%= form_for [@post, @comment] do |f| %>
+    <div>
+      <%= f.text_area :body, {rows: "3", class: "form-control"} %>
+    </div>
+      <%= f.submit "Post Comment", :class => "btn btn-default" %>
+  <% end %>
+</div>
 
-<h3>Comment</h3>
-<%= @comment.errors.full_messages.join(", ") %>
-<%= form_for [@post, @comment] do |f| %>
-  <div>
-    <%= f.text_area :body, {rows: "5", cols: "50"} %>
-  </div>
-  <%= f.submit "Post Comment" %>
-<% end %>
-
-<h2>Comments</h2>
-<% @post.new_first_comments.each do |pos| %>
-    <%= pos.body %>
-    <p><%= time_ago_in_words(pos.created_at) %> ago</p>
-    <%= link_to "Delete", post_comment_path(@post, pos), method: :delete, data: {confirm: "Are you sure you want to delete this comment?"} %>
-    <hr>
-<% end %>
+<div id="comments" class="container">
+  <% @post.new_first_comments.each do |pos| %>
+      <%= pos.body %>
+      <p><%= time_ago_in_words(pos.created_at) %> ago</p>
+      <%= link_to "Delete", post_comment_path(@post, pos), method: :delete, data: {confirm: "Are you sure you want to delete this comment?"} %>
+      <hr>
+  <% end %>
+</div>

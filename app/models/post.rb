@@ -17,6 +17,10 @@ class Post < ActiveRecord::Base
     where("title ILIKE ? OR body ILIKE ?", "%#{search}%", "%#{search}%")
   end
 
+  def full_name
+    "#{first_name} #{last_name}".titleize
+  end
+
   def new_first_comments
     comments.order(created_at: :desc)
   end
@@ -25,7 +29,7 @@ class Post < ActiveRecord::Base
   favourites.exists?(user: user)
   end
 
-def favourite_for(user)
-  favourites.find_by_user_id user
+  def favourite_for(user)
+    favourites.find_by_user_id user
   end
 end

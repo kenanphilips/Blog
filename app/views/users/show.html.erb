@@ -1,7 +1,9 @@
-<h1>Your Profile</h1>
+<div class="container">
+  <h1>Your Profile</h1>
 
-<p><b>First name:</b> <%= @user.first_name %></p>
-<p><b>Last name:</b> <%= @user.last_name %></p>
-<p><b>E-mail:</b> <%= @user.email %></p>
+  <p><b>First name:</b> <%= @user.first_name %></p>
+  <p><b>Last name:</b> <%= @user.last_name %></p>
+  <p><b>E-mail:</b> <%= @user.email %></p>
 
-<%= link_to "Edit Profile", edit_user_path(@user)%>
+  <%= link_to "Edit Profile", edit_user_path(@user)%>
+</div>

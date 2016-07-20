@@ -1,23 +1,34 @@
-<center>
-<%= @post.errors.full_messages.join(", ") %>
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div><br>
-  <div>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div><br>
-  <div>
-    <%= f.label "Tags" %><br>
-    <%= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) %>
-  </div><br>
-  <div>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-  </div><br>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
-</center>
+<div class="container">
+  <%= @post.errors.full_messages.join(", ") %>
+  <%= form_for @post do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Tags" %>
+      <%= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) do |b| %>
+        <div class="row">
+          <%= b.label(class: "check_box") do %>
+            <div class="col-xs-4">
+              <%= b.check_box(class: "check_box") %>
+            </div>
+            <div class="col-xs-8">
+              <%= b.object.title %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :category_id, Category.all, :id, :name %>
+    </div>
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

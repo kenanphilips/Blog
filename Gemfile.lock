@@ -36,11 +36,16 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
     arel (6.0.3)
+    autoprefixer-rails (6.3.6.2)
+      execjs
     awesome_print (1.7.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (9.0.5)
     cancancan (1.15.0)
@@ -76,6 +81,10 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -177,8 +186,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   awesome_print
   bcrypt (~> 3.1.7)
+  bootstrap-sass (~> 3.2.0)
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.1.0)
@@ -188,6 +199,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  letter_opener
   pg (~> 0.15)
   rails (= 4.2.6)
   rspec-rails
